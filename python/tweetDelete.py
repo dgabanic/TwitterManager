@@ -9,7 +9,6 @@ Description:    This program will delete all tweets after a specific number of d
 import tweepy
 import sys
 
-
 # Credentials for dummy account
 CONSUMER_KEY = "vSdsm3c1GGNNsJhtj5oeSp3nY"
 CONSUMER_SECRET = "F7F3kVJMVIUoOIkOvpTrGR7TC2d6ZWUt8DtIFfLpOBbbeM1xj0"
