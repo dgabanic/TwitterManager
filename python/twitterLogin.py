@@ -2,8 +2,10 @@
 
 """
 Author:         David Gabanic
-Description:    This program will delete all tweets after a specific number of days
-                in order to avoid future embarassing moments courtesy of Timehop.
+Description:    This script authenticates the user to access the Twitter account.
+
+NOTE:           Currently hardcoded to access @DavesTestAccount
+
 """
 
 import tweepy
@@ -26,8 +28,3 @@ def oauth_login(key, secret):
     auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
 
     return tweepy.API(auth)
-
-if __name__ == "__main__":
-    api = oauth_login(CONSUMER_KEY, CONSUMER_SECRET)
-    print ("Authenticated as @%s" % api.me().screen_name)
-    api.update_status(sys.argv[1])
