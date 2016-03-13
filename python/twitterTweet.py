@@ -1,4 +1,6 @@
 # encoding utf-8
+# https://gist.github.com/davej/113241
+# http://www.ankitpanda.com/tweeting-with-python/
 
 """
 Author:         David Gabanic
@@ -12,6 +14,9 @@ import time
 import threading
 
 import twitterLogin
+
+#TODO
+# Implement 0-140 character check
 
 # Tweets the time every minute
 def send_scheduled_tweet():

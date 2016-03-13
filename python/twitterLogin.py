@@ -1,4 +1,5 @@
 # encoding utf-8
+# https://github.com/olivierthereaux/oldtweets/blob/master/oldtweets.py
 
 """
 Author:         David Gabanic
