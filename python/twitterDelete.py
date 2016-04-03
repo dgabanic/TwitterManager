@@ -15,6 +15,7 @@ import wget
 import urllib
 
 import twitterLogin
+import credentials_test
 
 from datetime import datetime, timedelta
 
@@ -74,7 +75,7 @@ def tweet_delete():
     csvFile.close()
 
 if __name__ == "__main__":
-    api = twitterLogin.oauth_login(twitterLogin.CONSUMER_KEY, twitterLogin.CONSUMER_SECRET)
+    api = twitterLogin.oauth_login(credentials_test.CONSUMER_KEY, credentials_test.CONSUMER_SECRET)
     print ("Authenticated as @%s" % api.me().screen_name)
 
     tweet_delete()
