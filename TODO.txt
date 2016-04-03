@@ -1,0 +1,3 @@
+- Privatize access keys
+- Save media to separate folder
+- Create active file for daily use separate from files being worked on

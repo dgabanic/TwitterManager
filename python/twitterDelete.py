@@ -12,6 +12,7 @@ import tweepy
 import sys
 import csv
 import wget
+import urllib
 
 import twitterLogin
 
@@ -21,6 +22,9 @@ from datetime import datetime, timedelta
 delete_tweets = True
 verbose = True
 test_mode = True
+RETWEETED_BLOCK = 2500
+RETWEET_BLOCK = 5
+FAVORITE_BLOCK = 8
 
 # This number indicates how many days worth of tweets you'd like to keep
 older_than_these_days = 14
@@ -43,15 +47,18 @@ def tweet_delete():
         ignored_count = 0
 
         for tweet in timeline:
-            # Checks if there is media associated with the tweet
-            media = tweet.entities.get('media', [])
-            if(len(media) > 0):
-                media_files.add(media[0]['media_url'])
-                #wget.download(media_files)
+            filename = "NO MEDIA"
 
             # where tweets are not in "saved" list and older than cutoff date
-            if tweet.id and tweet.created_at < cutoff_date:
-                csvWriter.writerow([tweet.id, tweet.created_at, tweet.text])
+            if (tweet.id and tweet.created_at < cutoff_date and tweet.retweeted == True and tweet.retweet_count < RETWEETED_BLOCK) or (tweet.id and tweet.created_at < cutoff_date and tweet.retweeted == False and tweet.retweet_count < RETWEET_BLOCK and tweet.favorite_count < FAVORITE_BLOCK):
+                # Checks if there is media associated with the tweet
+                media = tweet.entities.get('media', [])
+                if(len(media) > 0):
+                    media_files.add(media[0]['media_url'])
+                    for media_file in media_files:
+                        filename = wget.download(media_file)
+
+                csvWriter.writerow([tweet.id, tweet.created_at, tweet.text, filename])
                 if verbose:
                     print ("Deleting %d: [%s] %s" % (tweet.id, tweet.created_at, tweet.text))
                 if not test_mode:
