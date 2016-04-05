@@ -15,19 +15,18 @@ import wget
 import urllib
 
 import twitterLogin
-import credentials_test
+import credentials
 
 from datetime import datetime, timedelta
 
 # Options
 delete_tweets = True
-test_mode = True
-RETWEETED_BLOCK = 0
-RETWEET_BLOCK = 0
-FAVORITE_BLOCK = 0
+RETWEETED_BLOCK = 2500
+RETWEET_BLOCK = 5
+FAVORITE_BLOCK = 8
 
 # This number indicates how many days worth of tweets you'd like to keep
-older_than_these_days = 0
+older_than_these_days = 14
 
 # Sets cutoff date; uses UTC to match Twitter
 cutoff_date = datetime.utcnow() - timedelta(days = older_than_these_days)
@@ -36,7 +35,6 @@ cutoff_date = datetime.utcnow() - timedelta(days = older_than_these_days)
 media_files = set()
 
 def tweet_delete():
-    csvFile = open('testTweetArchive.csv', 'a', encoding='utf-8')
     csvWriter = csv.writer(csvFile)
 
     if delete_tweets:
@@ -75,7 +73,7 @@ def tweet_delete():
     csvFile.close()
 
 if __name__ == "__main__":
-    api = twitterLogin.oauth_login(credentials_test.CONSUMER_KEY, credentials_test.CONSUMER_SECRET)
+    api = twitterLogin.oauth_login(credentials.CONSUMER_KEY, credentials.CONSUMER_SECRET)
     print ("Authenticated as @%s" % api.me().screen_name)
 
     tweet_delete()

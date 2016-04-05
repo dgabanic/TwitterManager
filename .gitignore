@@ -1,2 +1,6 @@
 python/credentials_test.py
 python/credentials.py
+*.jpg
+python/testTweetArchive.csv
+src/credentials.py
+src/testTweetArchive.csv

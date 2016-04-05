@@ -5,14 +5,14 @@
 Author:         David Gabanic
 Description:    This script authenticates the user to access the Twitter account.
 
-NOTE:           THIS IS THE TEST FILE THAT LOGS INTO @DavesTestAccount
+NOTE:           THIS IS THE LIVE FILE THAT LOGS INTO @David_Gabanic
 
 """
 
 import tweepy
 import sys
 
-import credentials_test
+import credentials
 
 def oauth_login(key, secret):
     #Authentication via Twitter
@@ -22,6 +22,6 @@ def oauth_login(key, secret):
 
     #verify = input("Authenticate at %s and then enter your verification code here: " % auth_url)
     #auth.get_access_token(verify)
-    auth.set_access_token(credentials_test.ACCESS_TOKEN, credentials_test.ACCESS_TOKEN_SECRET)
+    auth.set_access_token(credentials.ACCESS_TOKEN, credentials.ACCESS_TOKEN_SECRET)
 
     return tweepy.API(auth)
