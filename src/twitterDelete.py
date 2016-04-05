@@ -21,6 +21,7 @@ from datetime import datetime, timedelta
 
 # Options
 delete_tweets = True
+test_mode = False
 RETWEETED_BLOCK = 2500
 RETWEET_BLOCK = 5
 FAVORITE_BLOCK = 8
@@ -35,6 +36,7 @@ cutoff_date = datetime.utcnow() - timedelta(days = older_than_these_days)
 media_files = set()
 
 def tweet_delete():
+    csvFile = open('tweetArchive.csv', 'a', encoding='utf-8')
     csvWriter = csv.writer(csvFile)
 
     if delete_tweets:
